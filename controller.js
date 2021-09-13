@@ -13,8 +13,8 @@ async function createEmployee(userName, password, role) {
         var dataStringify = JSON.stringify(readData)
         await model.writeDataHospital('dataHospital', dataStringify)
         var totalEmploye = readData.employee.length
-        console.log(totalEmploye)
-        console.log('saved data success')
+        // console.log(totalEmploye)
+        console.log('saved data success', newDataEmployee, 'total employe: ', totalEmploye)
     } catch {
         console.log(err)
     }
