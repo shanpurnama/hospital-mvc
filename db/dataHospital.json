@@ -1,0 +1,15 @@
+{
+    "employee": [
+        {
+            "userName": "aldous",
+            "password": "aldous500",
+            "role": "officeBoy"
+        },
+        {
+            "userName": "aten",
+            "password": "aten123",
+            "role": "receptionist"
+        }
+    ],
+    "patient": []
+}
