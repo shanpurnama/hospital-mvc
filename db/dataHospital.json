@@ -3,9 +3,31 @@
         {
             "userName": "budi",
             "password": "budi123",
+            "role": "admin",
+            "isLogin": false
+        },
+        {
+            "userName": "shandy",
+            "password": "shandy03",
             "role": "doctor",
             "isLogin": true
+        },
+        {
+            "userName": "jhonson",
+            "password": "jhonson123",
+            "role": "admin",
+            "isLogin": false
         }
     ],
-    "patient": []
+    "patient": [
+        {
+            "userNamePattient": "Yudi",
+            "sickness": [
+                "pilek",
+                "flu",
+                "batuk",
+                "demam"
+            ]
+        }
+    ]
 }
