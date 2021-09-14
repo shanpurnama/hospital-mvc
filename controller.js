@@ -32,10 +32,10 @@ async function userLogin(userName, password) {
         }
         if (existUsername === true) {
             // console.log('masuk')
-            readData.employee[readData.employee.length -1].isLogin = true
+            readData.employee[readData.employee.length -1].isLogin = true // kalo gini brarti yang ganti isLogin = true tuh yang index terakhir dalem data
             var jsonStringify = JSON.stringify(readData)
             await model.writeDataHospital('dataHospital', jsonStringify)
-            console.log('user', readData.employee[readData.employee.length -1].userName, 'logged in successfully!')
+            console.log('user', readData.employee[readData.employee.length -1].userName, 'logged in successfully!')  // username bisa ambil dari tmpt lain selain readData
         } else {
             console.log('username and password wrong')
         }
@@ -49,7 +49,7 @@ async function createPatient(userName, password) {
         var readData = await model.readDataHospital('dataHospital')
         var isDoctor = false
         for(var i = 0; i < readData.employee.length; i++) {
-            if (readData.employee[i].role === 'doctor') {
+            if (readData.employee[i].role === 'doctor') { // check isLogin dulu baru cek isDoctor, kalo berhasil lanjut create patient, kalo gagal show error
                 isDoctor = true
             }
         }
