@@ -1,9 +1,10 @@
 {
     "employee": [
         {
-            "userName": "atennnn",
-            "password": "aten123",
-            "role": "receptionist"
+            "userName": "budi",
+            "password": "budi123",
+            "role": "doctor",
+            "isLogin": true
         }
     ],
     "patient": []

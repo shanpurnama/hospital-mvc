@@ -1,4 +1,5 @@
-var fs = require('fs')
+
+
 var model = require('./model')
 async function createEmployee(userName, password, role) {
     try {
@@ -6,20 +7,74 @@ async function createEmployee(userName, password, role) {
         var newDataEmployee = {
             userName: userName,
             password: password,
-            role: role
+            role: role,
+            isLogin: false
         }
 
         readData.employee.push(newDataEmployee)
         var dataStringify = JSON.stringify(readData)
         await model.writeDataHospital('dataHospital', dataStringify)
         var totalEmploye = readData.employee.length
-        // console.log(totalEmploye)
-        console.log('saved data success', newDataEmployee, 'total employe: ', totalEmploye)
+        console.log('saved data success.', newDataEmployee, 'Total Employe: ', totalEmploye)
+    } catch {
+        console.log(err)
+    }
+}
+
+async function userLogin(userName, password) {
+    try {
+        var readData = await model.readDataHospital('dataHospital')
+        var existUsername = false
+        for (var i = 0; i < readData.employee.length; i++) {
+            if (userName === readData.employee[i].userName && password === readData.employee[i].password) {
+                existUsername = true
+            } 
+        }
+        if (existUsername === true) {
+            // console.log('masuk')
+            readData.employee[readData.employee.length -1].isLogin = true
+            var jsonStringify = JSON.stringify(readData)
+            await model.writeDataHospital('dataHospital', jsonStringify)
+            console.log('user', readData.employee[readData.employee.length -1].userName, 'logged in successfully!')
+        } else {
+            console.log('username and password wrong')
+        }
+    } catch {
+        console.log(err)
+    }
+}
+
+async function createPatient(userName, password) {
+    try {
+        var readData = await model.readDataHospital('dataHospital')
+        var isDoctor = false
+        for(var i = 0; i < readData.employee.length; i++) {
+            if (readData.employee[i].role === 'doctor') {
+                isDoctor = true
+            }
+        }
+        if (isDoctor === true) {
+            console.log('ini doctor')
+            var addPatient = {
+                userName: userName,
+                sickness: [
+                    
+                ]
+            }
+        } else {
+            console.log('bukan dokter kamu')
+        }
     } catch {
         console.log(err)
     }
 }
 
 module.exports = {
-    createEmployee
+    createEmployee,
+    userLogin,
+    createPatient
 }
+
+
+// userName ==== userName && password === password
+// isLogin = true
