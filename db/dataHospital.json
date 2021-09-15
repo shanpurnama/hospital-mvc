@@ -3,11 +3,24 @@
         {
             "userName": "budi",
             "password": "budi123",
+            "role": "admin",
+            "isLogin": false
+        },
+        {
+            "userName": "shandy",
+            "password": "shandy03",
             "role": "doctor",
 <<<<<<< Updated upstream
             "isLogin": true
+        },
+        {
+            "userName": "jhonson",
+            "password": "jhonson123",
+            "role": "admin",
+            "isLogin": false
         }
     ],
+<<<<<<< HEAD
     "patient": []
 =======
             "isLogin": false
@@ -25,6 +38,8 @@
             "isLogin": true
         }
     ],
+=======
+>>>>>>> 6a51a22878427daf9588142a979447f10062b34a
     "patient": [
         {
             "userNamePattient": "Yudi",
@@ -34,6 +49,7 @@
                 "batuk",
                 "demam"
             ]
+<<<<<<< HEAD
         },
         {
             "userNamePattient": "flu",
@@ -45,4 +61,8 @@
         }
     ]
 >>>>>>> Stashed changes
+=======
+        }
+    ]
+>>>>>>> 6a51a22878427daf9588142a979447f10062b34a
 }

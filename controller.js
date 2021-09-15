@@ -27,15 +27,14 @@ async function userLogin(userName, password) {
         var existUsername = false
         for (var i = 0; i < readData.employee.length; i++) {
             if (userName === readData.employee[i].userName && password === readData.employee[i].password) {
+                readData.employee[i].isLogin = true
                 existUsername = true
             } 
         }
-        if (existUsername === true) {
-            // console.log('masuk')
-            readData.employee[readData.employee.length -1].isLogin = true // kalo gini brarti yang ganti isLogin = true tuh yang index terakhir dalem data
+        if (existUsername === true) { // kalo gini brarti yang ganti isLogin = true tuh yang index terakhir dalem data
             var jsonStringify = JSON.stringify(readData)
             await model.writeDataHospital('dataHospital', jsonStringify)
-            console.log('user', readData.employee[readData.employee.length -1].userName, 'logged in successfully!')  // username bisa ambil dari tmpt lain selain readData
+            console.log('user', userName, 'logged in successfully!')  // username bisa ambil dari tmpt lain selain readData
         } else {
             console.log('username and password wrong')
         }
@@ -44,25 +43,35 @@ async function userLogin(userName, password) {
     }
 }
 
-async function createPatient(userName, password) {
+async function createPatient(userNamePattient, sickness) {
     try {
         var readData = await model.readDataHospital('dataHospital')
-        var isDoctor = false
-        for(var i = 0; i < readData.employee.length; i++) {
-            if (readData.employee[i].role === 'doctor') { // check isLogin dulu baru cek isDoctor, kalo berhasil lanjut create patient, kalo gagal show error
-                isDoctor = true
+        var isLogin = false
+        for (var i = 0; i < readData.employee.length; i++) {
+            if (readData.employee[i].isLogin === true) {
+                isLogin = true
+                var isDoctor = false
+                if (readData.employee[i].role === 'doctor') {
+                    isDoctor = true
+                }
             }
         }
-        if (isDoctor === true) {
-            console.log('ini doctor')
-            var addPatient = {
-                userName: userName,
-                sickness: [
-                    
-                ]
+        if (isLogin === true) {
+            if (isDoctor) {
+                var addPatient = {
+                    userNamePattient: userNamePattient,
+                    sickness: sickness
+                }
+                readData.patient.push(addPatient)
+                var dataPatientStringify = JSON.stringify(readData)
+                await model.writeDataHospital('dataHospital', dataPatientStringify)
+                var totalPatient = readData.patient.length
+                console.log('data pasien berhasil ditambahkan.', 'Total Pasien: ', totalPatient)
+            } else {
+                console.log('tidak memiliki akses untuk menambahkan pasien')
             }
         } else {
-            console.log('bukan dokter kamu')
+            console.log('mohon untuk login dahulu untuk menambahkan pasien')
         }
     } catch {
         console.log(err)
@@ -74,7 +83,3 @@ module.exports = {
     userLogin,
     createPatient
 }
-
-
-// userName ==== userName && password === password
-// isLogin = true
