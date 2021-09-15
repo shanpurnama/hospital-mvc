@@ -8,5 +8,5 @@ if (command[0] === 'register') {
 } else if (command[0] === 'login') {
     controller.userLogin(command[1], command[2])
 } else if (command[0] === 'addPatient') {
-    controller.createPatient(command[1])
+    controller.createPatient(command[1], command.slice(2))
 }

@@ -4,8 +4,45 @@
             "userName": "budi",
             "password": "budi123",
             "role": "doctor",
+<<<<<<< Updated upstream
             "isLogin": true
         }
     ],
     "patient": []
+=======
+            "isLogin": false
+        },
+        {
+            "userName": "jhonson",
+            "password": "jhonson123",
+            "role": "admin",
+            "isLogin": false
+        },
+        {
+            "userName": "ria",
+            "password": "ria123",
+            "role": "doctor",
+            "isLogin": true
+        }
+    ],
+    "patient": [
+        {
+            "userNamePattient": "Yudi",
+            "sickness": [
+                "pilek",
+                "flu",
+                "batuk",
+                "demam"
+            ]
+        },
+        {
+            "userNamePattient": "flu",
+            "sickness": [
+                "demam",
+                "pilek",
+                "batuk"
+            ]
+        }
+    ]
+>>>>>>> Stashed changes
 }
