@@ -1,4 +1,51 @@
 {
-  "employee": [],
-  "patient": []
+    "employee": [
+        {
+            "idEmploye": 1,
+            "userName": "shandy",
+            "password": "shandy03",
+            "role": "doctor",
+            "isLogin": false
+        },
+        {
+            "idEmploye": 2,
+            "userName": "budi",
+            "password": "budi123",
+            "role": "admin",
+            "isLogin": false
+        },
+        {
+            "idEmploye": 3,
+            "userName": "angela",
+            "password": "angela20",
+            "role": "receptionist",
+            "isLogin": false
+        }
+    ],
+    "patient": [
+        {
+            "idPatient": 1,
+            "namePatient": "Yudi",
+            "gender": "male",
+            "age": "55",
+            "sickness": [
+                "jantung",
+                "demam",
+                "flu",
+                "batuk"
+            ]
+        },
+        {
+            "idPatient": 2,
+            "namePatient": "fanny",
+            "gender": "female",
+            "age": "5",
+            "sickness": [
+                "demam",
+                "flu",
+                "batuk",
+                "pilek"
+            ]
+        }
+    ]
 }

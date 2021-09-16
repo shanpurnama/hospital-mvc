@@ -5,6 +5,7 @@ async function createEmployee(userName, password, role) {
     try {
         var readData = await model.readDataHospital('dataHospital')
         var newDataEmployee = {
+            idEmploye: readData.employee.length +1,
             userName: userName,
             password: password,
             role: role,
@@ -43,7 +44,7 @@ async function userLogin(userName, password) {
     }
 }
 
-async function createPatient(userNamePattient, sickness) {
+async function createPatient(namePattient, gender, age, sickness) {
     try {
         var readData = await model.readDataHospital('dataHospital')
         var isLogin = false
@@ -59,7 +60,10 @@ async function createPatient(userNamePattient, sickness) {
         if (isLogin === true) {
             if (isDoctor) {
                 var addPatient = {
-                    userNamePattient: userNamePattient,
+                    idPatient: readData.patient.length +1,
+                    namePatient: namePattient,
+                    gender: gender,
+                    age: age,
                     sickness: sickness
                 }
                 readData.patient.push(addPatient)
@@ -78,8 +82,24 @@ async function createPatient(userNamePattient, sickness) {
     }
 }
 
+async function userLogOut() {
+    try {
+        var readData = await model.readDataHospital('dataHospital')
+        for (var i = 0; i < readData.employee.length; i++) {
+            if (readData.employee[i].isLogin === true) {
+                readData.employee[i].isLogin = false
+                var dataStringify = JSON.stringify(readData)
+                await model.writeDataHospital('dataHospital', dataStringify)
+                console.log('user', readData.employee[i].userName, 'logout successfully')
+            } 
+        }
+    } catch {
+        console.log(err)
+    }
+}
 module.exports = {
     createEmployee,
     userLogin,
-    createPatient
+    createPatient,
+    userLogOut
 }
