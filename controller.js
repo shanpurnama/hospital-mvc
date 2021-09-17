@@ -48,10 +48,10 @@ async function createPatient(namePattient, gender, age, sickness) {
     try {
         var readData = await model.readDataHospital('dataHospital')
         var isLogin = false
+        var isDoctor = false
         for (var i = 0; i < readData.employee.length; i++) {
             if (readData.employee[i].isLogin === true) {
                 isLogin = true
-                var isDoctor = false
                 if (readData.employee[i].role === 'doctor') {
                     isDoctor = true
                 }
